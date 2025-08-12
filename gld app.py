@@ -6,7 +6,7 @@ import pickle
 try:
   
 
- model = pickle.load(open(r"D:\New folder (2)\gold price\gld.sav", "rb"))
+ model = pickle.load(open(r"D:\New folder (2)\gold price\gld app.sav", "rb"))
 
 
 except FileNotFoundError:
@@ -55,4 +55,5 @@ def main():
         st.write("Input Data:", input_data)
 
 if __name__ == '__main__':
+
     main()
