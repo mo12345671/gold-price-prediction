@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 import pickle
-import io
 
 # Load the pre-trained model once and cache it
 @st.cache_resource
@@ -68,21 +67,20 @@ def main():
             if prediction is not None:
                 st.success(f"Predicted Gold Price (GLD): ${prediction:.2f}")
 
-                # Download prediction result
-                result_text = f"Gold Price Prediction Result\n\n" \
-                              f"S&P 500 (SPX): {spx}\n" \
-                              f"Oil Price (USO): {oil}\n" \
-                              f"Silver Price (SLV): {silver}\n" \
-                              f"EUR/USD Exchange Rate: {eurusd}\n\n" \
-                              f"Predicted Gold Price: ${prediction:.2f}\n"
+                # Prepare text for download
+                result_text = (
+                    "Gold Price Prediction Result\n\n"
+                    f"S&P 500 (SPX): {spx}\n"
+                    f"Oil Price (USO): {oil}\n"
+                    f"Silver Price (SLV): {silver}\n"
+                    f"EUR/USD Exchange Rate: {eurusd}\n\n"
+                    f"Predicted Gold Price: ${prediction:.2f}\n"
+                )
 
-                buffer = io.StringIO()
-                buffer.write(result_text)
-                buffer.seek(0)
-
+                # Download button expects a string or bytes, so pass string directly
                 st.download_button(
                     label="Download Prediction Result",
-                    data=buffer,
+                    data=result_text,
                     file_name="gold_price_prediction.txt",
                     mime="text/plain"
                 )
@@ -111,6 +109,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
