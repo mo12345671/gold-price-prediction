@@ -4,9 +4,13 @@ import pickle
 
 # Load the pre-trained model
 try:
-    model = pickle.load(open(r"gld.sav", "rb"))
+  
+
+ model = pickle.load(open(r"D:\New folder (2)\gold price\gld.sav", "rb"))
+
+
 except FileNotFoundError:
-    st.error("Model file 'gld.sav' not found. Please ensure the file exists.")
+    st.error("Model file 'gold_price_model.sav' not found. Please ensure the file exists.")
     st.stop()
 except Exception as e:
     st.error(f"Error loading model: {str(e)}")
@@ -27,19 +31,24 @@ def gold_price_prediction(input_data):
 def main():
     st.title('Gold Price Prediction Web App')
 
-    # Input fields using number_input for safer numeric input
+    # Input fields
     st.subheader("Enter Financial Data")
-    SPX = st.number_input('S&P 500 (SPX)', value=4000.0, step=1.0, format="%.2f")
-    USO = st.number_input('Oil Price (USO)', value=70.0, step=0.1, format="%.2f")
-    SLV = st.number_input('Silver Price (SLV)', value=25.0, step=0.1, format="%.2f")
-    EURUSD = st.number_input('EUR/USD Exchange Rate', value=1.1, step=0.001, format="%.4f")
-    
+    SPX = st.text_input('S&P 500 (SPX)', '')
+    USO = st.text_input('Oil Price (USO)', '')
+    SLV = st.text_input('Silver Price (SLV)', '')
+    EURUSD = st.text_input('EUR/USD Exchange Rate', '')
     input_data = [SPX, USO, SLV, EURUSD]
 
     # Prediction button
     if st.button('Predict Gold Price'):
-        prediction = gold_price_prediction(input_data)
-        st.success(prediction)
+        try:
+            if any(x == '' for x in input_data):
+                st.error("Please fill all fields with valid numbers.")
+            else:
+                prediction = gold_price_prediction(input_data)
+                st.success(prediction)
+        except Exception as e:
+            st.error(f"Input error: {str(e)}")
 
     # Optional: Display input data for debugging
     if st.checkbox("Show input data"):
