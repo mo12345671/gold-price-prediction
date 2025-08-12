@@ -17,11 +17,7 @@ A Streamlit web application that predicts gold prices based on key financial ind
 
 ---
 
-## Demo
 
-![App Screenshot](link-to-screenshot-or-gif)
-
----
 
 ## Getting Started
 
