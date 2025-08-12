@@ -53,11 +53,11 @@ def main():
 
     col1, col2 = st.columns(2)
     with col1:
-        spx = st.number_input("S&P 500 (SPX)", min_value=0.0, value=0, step=1.0, format="%.2f")
-        silver = st.number_input("Silver Price (SLV)", min_value=0.0, value=0, step=0.1, format="%.2f")
+        spx = st.number_input("S&P 500 (SPX)", min_value=0.0, value=0.0, step=1.0, format="%.2f")
+        silver = st.number_input("Silver Price (SLV)", min_value=0.0, value=0.0, step=0.1, format="%.2f")
     with col2:
-        oil = st.number_input("Oil Price (USO)", min_value=0.0, value=0, step=0.1, format="%.2f")
-        eurusd = st.number_input("EUR/USD Exchange Rate", min_value=0.0, value=0, step=0.001, format="%.4f")
+        oil = st.number_input("Oil Price (USO)", min_value=0.0, value=0.0, step=0.1, format="%.2f")
+        eurusd = st.number_input("EUR/USD Exchange Rate", min_value=0.0, value=0.0, step=0.001, format="%.4f")
 
     input_data = [spx, oil, silver, eurusd]
 
@@ -111,5 +111,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
