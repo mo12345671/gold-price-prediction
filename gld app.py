@@ -6,7 +6,7 @@ import pickle
 try:
   
 
- model = pickle.load(open("gld.sav", "rb"))
+ model = pickle.load(open(r"gld.sav", "rb"))
 
 
 except FileNotFoundError:
@@ -57,6 +57,7 @@ def main():
 if __name__ == '__main__':
 
     main()
+
 
 
 
